@@ -2153,26 +2153,44 @@ var ts=d.createElement("script");ts.type="text/javascript";ts.async=true;ts.id=i
 <!-- //Rating Mail.ru counter -->
 <script>
 function addGuestField() {
-    const container = document.getElementById('additionalGuests');
+  const container = document.getElementById('additionalGuests');
 
-    // Найти оригинальный блок поля по коду
-    const originalBlock = document.querySelector('.t-input-block input[data-input-lid="1495810354468"]');
-    if (!originalBlock) return;
+  // Найдём оригинальный .t-input-group по data-input-lid
+  const originalGroup = container.querySelector('.t-input-group[data-input-lid="1495810354468"]');
+  if (!originalGroup) return;
 
-    const baseBlock = originalBlock.closest('.t-input-block');
-    const count = container.querySelectorAll('.t-input-block').length;
-    const newCode = 1495810354468 + (count + 1) * 100;
+  // Считаем количество текущих групп гостей
+  const count = container.querySelectorAll('.t-input-group').length;
+  const newCode = 1495810354468 + count * 100;
 
-    // Клонируем только .t-input-block
-    const newBlock = baseBlock.cloneNode(true);
+  // Клонируем блок целиком
+  const newGroup = originalGroup.cloneNode(true);
 
-    const input = newBlock.querySelector('input');
-    input.value = '';
-    input.setAttribute('data-input-lid', newCode);
+  // Обновляем data-input-lid у клона
+  newGroup.setAttribute('data-input-lid', newCode);
 
-    container.appendChild(newBlock);
+  // Обновляем id и for у label и input, чтобы не было дублирования id
+  const input = newGroup.querySelector('input');
+  const label = newGroup.querySelector('label');
+
+  const newInputId = 'input_' + newCode;
+  const newErrorId = 'error_' + newCode;
+  const newLabelId = 'field-title_' + newCode;
+
+  input.id = newInputId;
+  input.value = '';
+  input.setAttribute('aria-describedby', newErrorId);
+  input.name = 'Name' + count; // если нужно уникальное имя поля
+
+  label.htmlFor = newInputId;
+  label.id = newLabelId;
+
+  // Обновляем блок ошибки
+  const errorBlock = newGroup.querySelector('.t-input-error');
+  errorBlock.id = newErrorId;
+
+  container.appendChild(newGroup);
 }
 </script>
-
 </body>
 </html>
