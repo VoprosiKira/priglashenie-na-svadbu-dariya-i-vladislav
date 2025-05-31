@@ -29,12 +29,12 @@
 </script>
 <link href="https://static.tildacdn.com/css/tilda-grid-3.0.min.css" media="all" onerror="this.loaderr='y';" rel="stylesheet" type="text/css"/>
 <link href="https://static.tildacdn.com/ws/project6527694/tilda-blocks-page36104389.min.css?t=1737465584" media="all" onerror="this.loaderr='y';" rel="stylesheet" type="text/css"/>
-<link href="https://static.tildacdn.com/css/tilda-animation-2.0.min.css" media="all" onerror="this.loaderr='y';" rel="stylesheet" type="text/css">
-<link href="https://static.tildacdn.com/css/tilda-popup-1.1.min.css" media="print" onerror="this.loaderr='y';" onload="this.media='all';" rel="stylesheet" type="text/css">
+<link href="https://static.tildacdn.com/css/tilda-animation-2.0.min.css" media="all" onerror="this.loaderr='y';" rel="stylesheet" type="text/css"/>
+<link href="https://static.tildacdn.com/css/tilda-popup-1.1.min.css" media="print" onerror="this.loaderr='y';" onload="this.media='all';" rel="stylesheet" type="text/css"/>
 <noscript>
-<link href="https://static.tildacdn.com/css/tilda-popup-1.1.min.css" media="all" rel="stylesheet" type="text/css"/>
-</noscript>
-<link href="https://static.tildacdn.com/css/tilda-forms-1.0.min.css" media="all" onerror="this.loaderr='y';" rel="stylesheet" type="text/css"/>
+<link href="https://static.tildacdn.com/css/tilda-popup-1.1.min.css" media="all" rel="stylesheet" type="text/css">
+</link></noscript>
+<link href="https://static.tildacdn.com/css/tilda-forms-1.0.min.css" media="all" onerror="this.loaderr='y';" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" type="text/css"/>
 <script charset="utf-8" nomodule="" src="https://static.tildacdn.com/js/tilda-polyfill-1.0.min.js">
 </script>
@@ -72,7 +72,7 @@ function t_onFuncLoad(funcName,okFunc,time) {if(typeof window[funcName]==='funct
 document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();
        </script>
 </link>
-</link>
+
 </head>
 <body class="t-body" style="margin:0;">
 <!--allrecords-->
@@ -2152,18 +2152,24 @@ var ts=d.createElement("script");ts.type="text/javascript";ts.async=true;ts.id=i
 </noscript>
 <!-- //Rating Mail.ru counter -->
 <script>
-        function addGuestField() {
-            const container = document.getElementById('additionalGuests');
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.name = 'Ваши имена с фамилией';
-            input.placeholder = 'ФИО дополнительного гостя';
-            input.className = 't-input';
-            input.style.marginTop = '10px';
-            input.style.border = '1px solid #c9c9c9';
-            input.style.borderRadius = '5px';
-            input.style.padding = '10px';
-            container.appendChild(input);
-        }
-        </script></body>
+function addGuestField() {
+    const originalInput = document.querySelector('[data-input-lid]');
+    if (!originalInput) return;
+
+    const container = document.getElementById('additionalGuests');
+    const lastInputs = container.querySelectorAll('[data-input-lid]');
+    const baseCode = parseInt(originalInput.getAttribute('data-input-lid'), 10);
+    const newCode = baseCode + (lastInputs.length + 1) * 100;
+
+    const cloneBlock = originalInput.closest('.t-input-block').cloneNode(true);
+    const input = cloneBlock.querySelector('input');
+    input.value = '';
+    input.setAttribute('data-input-lid', newCode.toString());
+
+    const label = cloneBlock.querySelector('.t-input-title');
+    if (label) label.innerText = 'Дополнительный гость';
+
+    container.appendChild(cloneBlock);
+}
+</script></body>
 </html>
