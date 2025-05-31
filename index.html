@@ -2154,22 +2154,23 @@ var ts=d.createElement("script");ts.type="text/javascript";ts.async=true;ts.id=i
 <script>
 function addGuestField() {
   const container = document.getElementById('additionalGuests');
+  console.log('container:', container);
 
-  // Найдём оригинальный .t-input-group по data-input-lid
   const originalGroup = container.querySelector('.t-input-group[data-input-lid="1495810354468"]');
-  if (!originalGroup) return;
+  console.log('originalGroup:', originalGroup);
 
-  // Считаем количество текущих групп гостей
+  if (!originalGroup) {
+    console.log('Оригинальный блок не найден!');
+    return;
+  }
+
   const count = container.querySelectorAll('.t-input-group').length;
   const newCode = 1495810354468 + count * 100;
 
-  // Клонируем блок целиком
   const newGroup = originalGroup.cloneNode(true);
 
-  // Обновляем data-input-lid у клона
   newGroup.setAttribute('data-input-lid', newCode);
 
-  // Обновляем id и for у label и input, чтобы не было дублирования id
   const input = newGroup.querySelector('input');
   const label = newGroup.querySelector('label');
 
@@ -2180,12 +2181,11 @@ function addGuestField() {
   input.id = newInputId;
   input.value = '';
   input.setAttribute('aria-describedby', newErrorId);
-  input.name = 'Name' + count; // если нужно уникальное имя поля
+  input.name = 'Name' + count;
 
   label.htmlFor = newInputId;
   label.id = newLabelId;
 
-  // Обновляем блок ошибки
   const errorBlock = newGroup.querySelector('.t-input-error');
   errorBlock.id = newErrorId;
 
