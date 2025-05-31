@@ -2153,23 +2153,34 @@ var ts=d.createElement("script");ts.type="text/javascript";ts.async=true;ts.id=i
 <!-- //Rating Mail.ru counter -->
 <script>
 function addGuestField() {
-    const originalInput = document.querySelector('[data-input-lid]');
-    if (!originalInput) return;
-
     const container = document.getElementById('additionalGuests');
-    const lastInputs = container.querySelectorAll('[data-input-lid]');
-    const baseCode = parseInt(originalInput.getAttribute('data-input-lid'), 10);
-    const newCode = baseCode + (lastInputs.length + 1) * 100;
+    const form = document.querySelector('form[name="form588251809"]');
+    if (!form) return;
 
-    const cloneBlock = originalInput.closest('.t-input-block').cloneNode(true);
-    const input = cloneBlock.querySelector('input');
-    input.value = '';
-    input.setAttribute('data-input-lid', newCode.toString());
+    const allBlocks = form.querySelectorAll('.t-input-group[data-input-lid]');
+    let lastBlock = allBlocks[allBlocks.length - 1];
 
-    const label = cloneBlock.querySelector('.t-input-title');
-    if (label) label.innerText = 'Дополнительный гость';
+    if (!lastBlock || container.contains(lastBlock)) {
+        lastBlock = form.querySelector('.t-input-group[data-input-lid]');
+    }
 
-    container.appendChild(cloneBlock);
+    const newBlock = lastBlock.cloneNode(true);
+    const input = newBlock.querySelector('input');
+    const oldCode = parseInt(newBlock.getAttribute('data-input-lid'), 10);
+    const offset = container.querySelectorAll('.t-input-group').length + 1;
+    const newCode = oldCode + offset * 100;
+
+    newBlock.setAttribute('data-input-lid', newCode);
+    if (input) {
+        input.value = '';
+        input.setAttribute('data-input-lid', newCode);
+    }
+
+    const label = newBlock.querySelector('.t-input-title');
+    if (label) label.textContent = 'Дополнительный гость';
+
+    container.appendChild(newBlock);
 }
-</script></body>
+</script>
+</body>
 </html>
