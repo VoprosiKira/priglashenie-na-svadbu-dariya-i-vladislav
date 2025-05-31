@@ -2154,42 +2154,37 @@ var ts=d.createElement("script");ts.type="text/javascript";ts.async=true;ts.id=i
 <script>
 function addGuestField() {
   const container = document.getElementById('additionalGuests');
-  console.log('container:', container);
 
-  const originalGroup = container.querySelector('.t-input-group[data-input-lid="1495810354468"]');
-  console.log('originalGroup:', originalGroup);
-
-  if (!originalGroup) {
-    console.log('Оригинальный блок не найден!');
+  // Находим оригинальный input по ID
+  const originalInput = document.getElementById('input_1495810354468');
+  if (!originalInput) {
+    console.log("Оригинальный input не найден!");
     return;
   }
 
-  const count = container.querySelectorAll('.t-input-group').length;
-  const newCode = 1495810354468 + count * 100;
+  const baseBlock = originalInput.closest('.t-input-group');
+  if (!baseBlock) {
+    console.log("Оригинальный .t-input-group не найден!");
+    return;
+  }
 
-  const newGroup = originalGroup.cloneNode(true);
+  // Клонируем весь блок
+  const newBlock = baseBlock.cloneNode(true);
 
-  newGroup.setAttribute('data-input-lid', newCode);
-
-  const input = newGroup.querySelector('input');
-  const label = newGroup.querySelector('label');
-
-  const newInputId = 'input_' + newCode;
-  const newErrorId = 'error_' + newCode;
-  const newLabelId = 'field-title_' + newCode;
-
-  input.id = newInputId;
+  // Очищаем значение поля
+  const input = newBlock.querySelector('input');
   input.value = '';
-  input.setAttribute('aria-describedby', newErrorId);
-  input.name = 'Name' + count;
 
-  label.htmlFor = newInputId;
-  label.id = newLabelId;
+  // Удалим старый ID и name, чтобы избежать конфликтов
+  input.removeAttribute('id');
+  input.setAttribute('name', 'Дополнительный гость');
 
-  const errorBlock = newGroup.querySelector('.t-input-error');
-  errorBlock.id = newErrorId;
+  // Очистим возможную ошибку
+  const error = newBlock.querySelector('.t-input-error');
+  if (error) error.innerHTML = '';
 
-  container.appendChild(newGroup);
+  // Добавим в контейнер
+  container.appendChild(newBlock);
 }
 </script>
 </body>
