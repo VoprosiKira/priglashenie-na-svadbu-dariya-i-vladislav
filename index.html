@@ -2154,27 +2154,25 @@ var ts=d.createElement("script");ts.type="text/javascript";ts.async=true;ts.id=i
 <script>
 function addGuestField() {
     const container = document.getElementById('additionalGuests');
-    const originalBlock = document.querySelector('.t-input-group[data-input-lid="1495810354468"]');
+
+    // Найти оригинальный блок поля по коду
+    const originalBlock = document.querySelector('.t-input-block input[data-input-lid="1495810354468"]');
     if (!originalBlock) return;
 
-    // Подсчитываем, сколько уже добавлено гостей
-    const count = container.querySelectorAll('.t-input-group').length;
+    const baseBlock = originalBlock.closest('.t-input-block');
+    const count = container.querySelectorAll('.t-input-block').length;
     const newCode = 1495810354468 + (count + 1) * 100;
 
-    const newBlock = originalBlock.cloneNode(true);
-    newBlock.setAttribute('data-input-lid', newCode);
+    // Клонируем только .t-input-block
+    const newBlock = baseBlock.cloneNode(true);
 
     const input = newBlock.querySelector('input');
-    if (input) {
-        input.value = '';
-        input.setAttribute('data-input-lid', newCode);
-    }
-
-    const label = newBlock.querySelector('.t-input-title');
-    if (label) label.textContent = 'Дополнительный гость';
+    input.value = '';
+    input.setAttribute('data-input-lid', newCode);
 
     container.appendChild(newBlock);
 }
 </script>
+
 </body>
 </html>
