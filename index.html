@@ -1495,7 +1495,7 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();
             Ваши имена с фамилией
            </label>
 <div class="t-input-block" style="border-radius:5px;">
-<input aria-describedby="error_1495810354468" aria-required="true" class="t-input js-tilda-rule" data-tilda-req="1" id="input_1495810354468" name="Ваши имена с фамилией" placeholder="ФИО" style="color:#000000;border:1px solid #c9c9c9;border-radius:5px;" type="text" value=""/>
+<input aria-describedby="error_1495810354468" aria-required="true" class="t-input js-tilda-rule" data-tilda-req="1" id="input_1495810354468" name="Ваше имя с фамилией" placeholder="ФИО" style="color:#000000;border:1px solid #c9c9c9;border-radius:5px;" type="text" value=""/>
 </div><div id="additionalGuests"></div><button onclick="addGuestField()" type="button">+ Добавить ещё гостя</button>
 <div aria-live="polite" class="t-input-error" id="error_1495810354468">
 </div>
@@ -1902,11 +1902,14 @@ var ts=d.createElement("script");ts.type="text/javascript";ts.async=true;ts.id=i
 </noscript>
 <!-- //Rating Mail.ru counter -->
 <script>
-function addGuestField() {
-  const container = document.getElementById('additionalGuests');
+let guestCount = 1; // Начинаем с 1, т.к. основное поле — первый гость
 
-  // Находим оригинальный input по ID
+function addGuestField() {
+  guestCount++;
+
+  const container = document.getElementById('additionalGuests');
   const originalInput = document.getElementById('input_1495810354468');
+
   if (!originalInput) {
     console.log("Оригинальный input не найден!");
     return;
@@ -1918,22 +1921,29 @@ function addGuestField() {
     return;
   }
 
-  // Клонируем весь блок
   const newBlock = baseBlock.cloneNode(true);
 
-  // Очищаем значение поля
+  // Настройка нового поля
   const input = newBlock.querySelector('input');
   input.value = '';
-
-  // Удалим старый ID и name, чтобы избежать конфликтов
   input.removeAttribute('id');
-  input.setAttribute('name', 'Дополнительный гость');
+  input.setAttribute('name', 'Ваше имя с фамилией ' + guestCount);
 
-  // Очистим возможную ошибку
+  // Обновляем label, чтобы он не дублировал
+  const label = newBlock.querySelector('label');
+  if (label) {
+    label.textContent = 'ФИО ' + guestCount;
+    label.removeAttribute('for');
+  }
+
+  // Удаляем сообщения об ошибках и их ID
   const error = newBlock.querySelector('.t-input-error');
-  if (error) error.innerHTML = '';
+  if (error) {
+    error.innerHTML = '';
+    error.removeAttribute('id');
+  }
 
-  // Добавим в контейнер
+  // Добавляем в DOM
   container.appendChild(newBlock);
 }
 </script>
