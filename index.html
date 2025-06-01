@@ -1496,7 +1496,10 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();
            </label>
 <div class="t-input-block" style="border-radius:5px;">
 <input aria-describedby="error_1495810354468" aria-required="true" class="t-input js-tilda-rule" data-tilda-req="1" id="input_1495810354468" name="Ваши имена с фамилией" placeholder="ФИО" style="color:#000000;border:1px solid #c9c9c9;border-radius:5px;" type="text" value=""/>
-</div><div id="additionalGuests"></div><button onclick="addGuestField()" type="button">+ Добавить ещё гостя</button>
+</div>
+<div id="guest-button-wrappe">
+<button onclick="addGuestBtn" type="button">+ Добавить ещё гостя</button>
+</div>
 <div aria-live="polite" class="t-input-error" id="error_1495810354468">
 </div>
 </div>
@@ -1902,41 +1905,42 @@ var ts=d.createElement("script");ts.type="text/javascript";ts.async=true;ts.id=i
 </noscript>
 <!-- //Rating Mail.ru counter -->
 <script>
-  let guestCounter = 1;
-  let baseLid = 1495810354468;
+  let guestIndex = 1;
+  const baseLid = 1495810354468;
 
-  function addGuestField() {
-    // Находим основной контейнер с полем ФИО
-    const original = document.querySelector('[data-input-lid="1495810354468"]');
-    const clone = original.cloneNode(true);
+  document.addEventListener("DOMContentLoaded", function () {
+    const addButton = document.getElementById("addGuestBtn");
+    const originalField = document.querySelector('[data-input-lid="' + baseLid + '"]');
 
-    // Обновляем data-input-lid
-    const newLid = baseLid + guestCounter * 100;
-    clone.setAttribute('data-input-lid', newLid);
+    addButton.addEventListener("click", function () {
+      guestIndex++;
 
-    // Обновляем атрибуты внутри: id, name, for, aria-describedby, и value
-    const input = clone.querySelector('input');
-    input.setAttribute('data-tilda-req', '1');
-    input.setAttribute('id', 'input_' + newLid);
-    input.setAttribute('name', 'Ваши имена с фамилией ' + (guestCounter + 1));
-    input.setAttribute('aria-describedby', 'error_' + newLid);
-    input.value = '';
+      const clone = originalField.cloneNode(true);
 
-    const label = clone.querySelector('label');
-    label.setAttribute('for', 'input_' + newLid);
-    label.setAttribute('id', 'field-title_' + newLid);
-    label.innerText = 'Ваши имена с фамилией ' + (guestCounter + 1);
+      // Новый lid
+      const newLid = baseLid + guestIndex * 100;
+      clone.setAttribute("data-input-lid", newLid);
 
-    const errorDiv = clone.querySelector('.t-input-error');
-    errorDiv.setAttribute('id', 'error_' + newLid);
-    errorDiv.innerHTML = '';
+      const input = clone.querySelector("input");
+      input.setAttribute("id", "input_" + newLid);
+      input.setAttribute("name", "Ваши имена с фамилией " + guestIndex);
+      input.setAttribute("aria-describedby", "error_" + newLid);
+      input.value = "";
 
-    // Вставляем клон перед кнопкой
-    const button = document.querySelector('button[onclick="addGuestField()"]');
-    original.parentNode.insertBefore(clone, button);
+      const label = clone.querySelector("label");
+      label.setAttribute("for", "input_" + newLid);
+      label.setAttribute("id", "field-title_" + newLid);
+      label.textContent = "Ваши имена с фамилией " + guestIndex;
 
-    guestCounter++;
-  }
+      const errorDiv = clone.querySelector(".t-input-error");
+      errorDiv.setAttribute("id", "error_" + newLid);
+      errorDiv.innerHTML = "";
+
+      // Вставляем перед кнопкой
+      const buttonWrapper = document.getElementById("guest-button-wrapper");
+      buttonWrapper.parentNode.insertBefore(clone, buttonWrapper);
+    });
+  });
 </script>
 </body>
 </html>
