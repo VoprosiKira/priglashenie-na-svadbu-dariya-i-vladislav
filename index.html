@@ -1696,12 +1696,19 @@ t_input_checkboxes_init('588251809','1495810410810');});
 <label class="t-input-title t-descr t-descr_md" data-redactor-toolbar="no" field="li_title__1495810354468" for="input_1495810354468" id="field-title_1495810354468" style="color:;">
             Ваше имя/имена с фамилией
            </label>
+<div id="additionalGuestsNo">
+<div class="t-input-group t-input-group_in" data-field-type="in" data-input-lid="1495810354468">
+<label class="t-input-title t-descr t-descr_md" for="input_1495810354468">Ваше имя/имена с фамилией</label>  
 <div class="t-input-block" style="border-radius:5px;">
 <input aria-describedby="error_1495810354468" aria-required="true" class="t-input js-tilda-rule" data-tilda-req="1" id="input_1495810354468" name="Ваше имя/имена с фамилией" style="color:#000000;border:1px solid #c9c9c9;border-radius:5px;" type="text" value=""/>
 </div>
 <div aria-live="polite" class="t-input-error" id="error_1495810354468">
 </div>
 </div>
+</div>
+<button type="button" onclick="addGuestFieldNo()" style="margin-top: 10px; padding: 10px 20px; background-color: #c29967; color: #fff; border: none; border-radius: 5px;">
+ + Добавить ещё одного человека
+</button>
 <div class="t-input-group t-input-group_" data-field-type="" data-input-lid="1495810359387">
 <div class="t-input-block" style="border-radius:5px;">
 </div>
@@ -1944,6 +1951,35 @@ function addGuestField() {
   }
 
   // Добавляем в DOM
+  container.appendChild(newBlock);
+}
+</script>
+<script>
+function addGuestFieldNo() {
+  const container = document.getElementById('additionalGuestsNo');
+
+  const originalInput = document.getElementById('input_1495810354468');
+  if (!originalInput) {
+    console.log("Оригинальный input не найден!");
+    return;
+  }
+
+  const baseBlock = originalInput.closest('.t-input-group');
+  if (!baseBlock) {
+    console.log("Оригинальный .t-input-group не найден!");
+    return;
+  }
+
+  const newBlock = baseBlock.cloneNode(true);
+
+  const input = newBlock.querySelector('input');
+  input.value = '';
+  input.removeAttribute('id');
+  input.setAttribute('name', 'Дополнительный гость (не сможет прийти)');
+
+  const error = newBlock.querySelector('.t-input-error');
+  if (error) error.innerHTML = '';
+
   container.appendChild(newBlock);
 }
 </script>
