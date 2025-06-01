@@ -1902,40 +1902,41 @@ var ts=d.createElement("script");ts.type="text/javascript";ts.async=true;ts.id=i
 </noscript>
 <!-- //Rating Mail.ru counter -->
 <script>
-function addGuestField() {
-  const container = document.getElementById('additionalGuests');
+  let guestCounter = 1;
+  let baseLid = 1495810354468;
 
-  // Находим оригинальный input по ID
-  const originalInput = document.getElementById('input_1495810354468');
-  if (!originalInput) {
-    console.log("Оригинальный input не найден!");
-    return;
+  function addGuestField() {
+    // Находим основной контейнер с полем ФИО
+    const original = document.querySelector('[data-input-lid="1495810354468"]');
+    const clone = original.cloneNode(true);
+
+    // Обновляем data-input-lid
+    const newLid = baseLid + guestCounter * 100;
+    clone.setAttribute('data-input-lid', newLid);
+
+    // Обновляем атрибуты внутри: id, name, for, aria-describedby, и value
+    const input = clone.querySelector('input');
+    input.setAttribute('data-tilda-req', '1');
+    input.setAttribute('id', 'input_' + newLid);
+    input.setAttribute('name', 'Ваши имена с фамилией ' + (guestCounter + 1));
+    input.setAttribute('aria-describedby', 'error_' + newLid);
+    input.value = '';
+
+    const label = clone.querySelector('label');
+    label.setAttribute('for', 'input_' + newLid);
+    label.setAttribute('id', 'field-title_' + newLid);
+    label.innerText = 'Ваши имена с фамилией ' + (guestCounter + 1);
+
+    const errorDiv = clone.querySelector('.t-input-error');
+    errorDiv.setAttribute('id', 'error_' + newLid);
+    errorDiv.innerHTML = '';
+
+    // Вставляем клон перед кнопкой
+    const button = document.querySelector('button[onclick="addGuestField()"]');
+    original.parentNode.insertBefore(clone, button);
+
+    guestCounter++;
   }
-
-  const baseBlock = originalInput.closest('.t-input-group');
-  if (!baseBlock) {
-    console.log("Оригинальный .t-input-group не найден!");
-    return;
-  }
-
-  // Клонируем весь блок
-  const newBlock = baseBlock.cloneNode(true);
-
-  // Очищаем значение поля
-  const input = newBlock.querySelector('input');
-  input.value = '';
-
-  // Удалим старый ID и name, чтобы избежать конфликтов
-  input.removeAttribute('id');
-  input.setAttribute('name', 'Дополнительный гость');
-
-  // Очистим возможную ошибку
-  const error = newBlock.querySelector('.t-input-error');
-  if (error) error.innerHTML = '';
-
-  // Добавим в контейнер
-  container.appendChild(newBlock);
-}
 </script>
 </body>
 </html>
