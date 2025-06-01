@@ -1954,10 +1954,14 @@ function addGuestField() {
 }
 </script>
 <script>
-function addGuestFieldNo() {
-  const container = document.getElementById('additionalGuestsNo');
+let guestNoCount = 1; // Начинаем с 1 — первое поле уже на странице
 
+function addGuestFieldNo() {
+  guestNoCount++;
+
+  const container = document.getElementById('additionalGuestsNo');
   const originalInput = document.getElementById('input_1495810354468');
+
   if (!originalInput) {
     console.log("Оригинальный input не найден!");
     return;
@@ -1971,13 +1975,25 @@ function addGuestFieldNo() {
 
   const newBlock = baseBlock.cloneNode(true);
 
+  // Настройка нового input
   const input = newBlock.querySelector('input');
   input.value = '';
   input.removeAttribute('id');
-  input.setAttribute('name', 'Дополнительный гость (не сможет прийти)');
+  input.setAttribute('name', 'Гость не придёт ' + guestNoCount); // уникальное имя
 
+  // Обновим label
+  const label = newBlock.querySelector('label');
+  if (label) {
+    label.textContent = 'Ваше имя с фамилией';
+    label.removeAttribute('for');
+  }
+
+  // Очистка блока ошибок
   const error = newBlock.querySelector('.t-input-error');
-  if (error) error.innerHTML = '';
+  if (error) {
+    error.innerHTML = '';
+    error.removeAttribute('id');
+  }
 
   container.appendChild(newBlock);
 }
