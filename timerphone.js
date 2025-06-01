@@ -1,5 +1,5 @@
 (function () {
-    var _id = "faf6896c0e00d7ae91258f341307f255";
+    var _id = "7bb8bd5d90717fce7ff2ab0003aaf76d";
 
     // Проверка на уникальность ID
     while (document.getElementById("timer" + _id)) {
@@ -8,7 +8,7 @@
 
     // Создаем контейнер для таймера
     document.write(
-        "<div id='timer" + _id + "' style='min-width:543px;height:98px;'></div>"
+        "<div id='timer" + _id + "' style='min-width:393px;height:86px;'></div>"
     );
 
     // Загружаем скрипт таймера
@@ -30,19 +30,19 @@
             design: {
                 type: "plate",
                 params: {
-                    round: "10",
+                    round: "11",
                     background: "gradient",
                     "background-color": ["#7f6000", "#f4d67a"],
                     effect: "flipchart",
-                    space: "2",
-                    "separator-margin": "20",
+                    space: "0",
+                    "separator-margin": "4",
                     "number-font-family": {
                         family: "Comfortaa",
                         link: "<link href='//fonts.googleapis.com/css?family=Comfortaa&subset=latin,cyrillic' rel='stylesheet' type='text/css'>"
                     },
                     "number-font-size": "60",
                     "number-font-color": "#ffffff",
-                    padding: "12",
+                    padding: "5",
                     "separator-on": false,
                     "separator-text": ":",
                     "text-on": true,
@@ -56,8 +56,8 @@
             },
             designId: 3,
             theme: "white",
-            width: 543,
-            height: 98
+            width: 393,
+            height: 86
         });
 
         if (_k != null) {
