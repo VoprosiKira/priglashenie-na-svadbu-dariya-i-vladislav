@@ -1382,7 +1382,7 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();
 <div aria-live="polite" class="t-input-error" id="error_1495810410810">
 </div>
 </div>
-</div>
+<div class="t-input-group t-input-group_cb" data-field-type="cb" data-input-lid="1737465550103">
 <div aria-live="polite" class="t-input-error" id="error_1737465550103">
 </div>
 </div>
@@ -1438,11 +1438,8 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();
 </div>
 </form>
 <style>
-         #rec588250181 input::-webkit-input-placeholder {color:#000000;opacity:0.5;}#rec588250181 input::-moz-placeholder{color:#000000;opacity:0.5;}#rec588250181 input:-moz-placeholder {color:#000000;opacity:0.5;}#rec588250181 input:-ms-input-placeholder{color:#000000;opacity:0.5;}#rec588250181 textarea::-webkit-input-placeholder {color:#000000;opacity:0.5;}#rec588250181 textarea::-moz-placeholder{color:#000000;opacity:0.5;}#rec588250181 textarea:-moz-placeholder {color:#000000;opacity:0.5;}#rec588250181 textarea:-ms-input-placeholder{color:#000000;opacity:0.5;}
-        </style>
-<div class="t702__form-bottom-text t-text t-text_xs t-align_center">
-         Заполняя форму, вы автоматически соглашаетесь с обработкой персональных данных для организаторов свадьбы.
-        </div>
+#rec588250181 input::-webkit-input-placeholder {color:#000000;opacity:0.5;}#rec588250181 input::-moz-placeholder{color:#000000;opacity:0.5;}#rec588250181 input:-moz-placeholder {color:#000000;opacity:0.5;}#rec588250181 input:-ms-input-placeholder{color:#000000;opacity:0.5;}#rec588250181 textarea::-webkit-input-placeholder {color:#000000;opacity:0.5;}#rec588250181 textarea::-moz-placeholder{color:#000000;opacity:0.5;}#rec588250181 textarea:-moz-placeholder {color:#000000;opacity:0.5;}#rec588250181 textarea:-ms-input-placeholder{color:#000000;opacity:0.5;}
+</style>
 </div>
 </div>
 </div>
@@ -1511,18 +1508,6 @@ document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();
 <input aria-describedby="error_1682515770322" autocomplete="tel" class="t-input js-tilda-rule" data-tilda-rule="phone" id="input_1682515770322" name="Phone" pattern="[0-9]*" placeholder="+7 (999)999-99-99" style="color:#000000;border:1px solid #c9c9c9;border-radius:5px;" type="tel" value=""/>
 </div>
 <div aria-live="polite" class="t-input-error" id="error_1682515770322">
-</div>
-</div>
-<div aria-labelledby="field-title_1495810359387" class="t-input-group t-input-group_rd" data-field-radcb="cb" data-field-type="rd" data-input-lid="1495810359387" role="group">
-<script>
-             t_onReady(function() {function t_input_checkboxes_updateval(recid,lid) {var rec=document.getElementById('rec' + recid);if(!rec) return;var inputWrapper=rec.querySelector('[data-input-lid="' + lid + '"]');if(!inputWrapper) return;var inputHidden=inputWrapper.querySelector('.t-checkboxes__hiddeninput');inputHidden.value='';var checkboxes=inputWrapper.querySelectorAll('.t-checkbox');Array.prototype.forEach.call(checkboxes,function(checkBox) {if(checkBox.checked) {if(inputHidden.value!=='') inputHidden.value+='; ';inputHidden.value+=checkBox.value;}});}
-function t_input_checkboxes_setOwnAnswerValue(recid,lid) {var rec=document.getElementById('rec' + recid);if(!rec) return;var inputWrapper=rec.querySelector('[data-input-lid="' + lid + '"]');if(!inputWrapper) return;var ownVariantField=inputWrapper.querySelector('.t-checkboxes__ownvariant-wrapper');var inputOwnAnswer=ownVariantField.querySelector('.t-input-ownanswer');var inputValue='';var isVariantsInRow=inputWrapper.querySelector('.t-input-block_rd-flex');var labelText=inputOwnAnswer.closest('.t-ownvariant-wrapper_flex').querySelector('span');var checkboxOwnAnswer=ownVariantField.querySelector('.t-checkbox-ownanswer');checkboxOwnAnswer.setAttribute('data-own-variant-title',checkboxOwnAnswer.value);checkboxOwnAnswer.addEventListener('click',function() {if(checkboxOwnAnswer.checked) {inputOwnAnswer.style.display='flex';inputOwnAnswer.classList.add('t-input-ownanswer_active');inputOwnAnswer.focus();if(labelText&&isVariantsInRow) {labelText.style.display='none';}} else {inputOwnAnswer.classList.remove('t-input-ownanswer_active');}});inputOwnAnswer.addEventListener('input',function() {inputValue=inputOwnAnswer.value;});inputOwnAnswer.addEventListener('focus',function() {if(labelText&&isVariantsInRow) {labelText.style.display='none';}});inputOwnAnswer.addEventListener('blur',function() {var inputFinishValue=inputValue.trim()!==''?': ' + inputValue:'';var inputTitle=checkboxOwnAnswer.getAttribute('data-own-variant-title');checkboxOwnAnswer.value=inputTitle + inputFinishValue;if(inputValue.trim()==='') {inputOwnAnswer.style.display='none';};if(labelText&&isVariantsInRow) {labelText.style.display='block';}
-t_input_checkboxes_updateval(recid,lid);});}
-function t_input_checkboxes_init(recid,lid) {var rec=document.getElementById('rec' + recid);if(!rec) return;var inputWrapper=rec.querySelector('[data-input-lid="' + lid + '"]');if(!inputWrapper) return;var inputControls=inputWrapper.querySelectorAll('.t-checkbox__control');Array.prototype.forEach.call(inputControls,function(input) {input.addEventListener('click',function() {t_input_checkboxes_updateval(recid,lid);});});t_input_checkboxes_updateval(recid,lid);var ownVariantField=inputWrapper.querySelector('.t-checkboxes__ownvariant-wrapper');if(ownVariantField) {t_input_checkboxes_setOwnAnswerValue(recid,lid);}}
-t_input_checkboxes_init('588251809','1495810359387');});
-</script>
-</div>
-<div aria-live="polite" class="t-input-error" id="error_1495810359387">
 </div>
 </div>
 <div aria-labelledby="field-title_1495810410810" class="t-input-group t-input-group_rd" data-field-radcb="cb" data-field-type="rd" data-input-lid="1495810410810" role="group">
@@ -1599,10 +1584,9 @@ function t_input_checkboxes_setOwnAnswerValue(recid,lid) {var rec=document.getEl
 t_input_checkboxes_updateval(recid,lid);});}
 function t_input_checkboxes_init(recid,lid) {var rec=document.getElementById('rec' + recid);if(!rec) return;var inputWrapper=rec.querySelector('[data-input-lid="' + lid + '"]');if(!inputWrapper) return;var inputControls=inputWrapper.querySelectorAll('.t-checkbox__control');Array.prototype.forEach.call(inputControls,function(input) {input.addEventListener('click',function() {t_input_checkboxes_updateval(recid,lid);});});t_input_checkboxes_updateval(recid,lid);var ownVariantField=inputWrapper.querySelector('.t-checkboxes__ownvariant-wrapper');if(ownVariantField) {t_input_checkboxes_setOwnAnswerValue(recid,lid);}}
 t_input_checkboxes_init('588251809','1495810410810');});
-            </script>
+</script>
 </div>
-</div>
-<div aria-live="polite" class="t-input-error" id="error_1737465559466">
+<div aria-live="polite" class="t-input-error" id="error_1495810410810">
 </div>
 </div>
 <div class="t-form__errorbox-middle">
@@ -1657,11 +1641,8 @@ t_input_checkboxes_init('588251809','1495810410810');});
 </div>
 </form>
 <style>
-         #rec588251809 input::-webkit-input-placeholder {color:#000000;opacity:0.5;}#rec588251809 input::-moz-placeholder{color:#000000;opacity:0.5;}#rec588251809 input:-moz-placeholder {color:#000000;opacity:0.5;}#rec588251809 input:-ms-input-placeholder{color:#000000;opacity:0.5;}#rec588251809 textarea::-webkit-input-placeholder {color:#000000;opacity:0.5;}#rec588251809 textarea::-moz-placeholder{color:#000000;opacity:0.5;}#rec588251809 textarea:-moz-placeholder {color:#000000;opacity:0.5;}#rec588251809 textarea:-ms-input-placeholder{color:#000000;opacity:0.5;}
-        </style>
-<div class="t702__form-bottom-text t-text t-text_xs t-align_center">
-         Заполняя форму, вы автоматически соглашаетесь с обработкой персональных данных для организаторов свадьбы.
-        </div>
+#rec588251809 input::-webkit-input-placeholder {color:#000000;opacity:0.5;}#rec588251809 input::-moz-placeholder{color:#000000;opacity:0.5;}#rec588251809 input:-moz-placeholder {color:#000000;opacity:0.5;}#rec588251809 input:-ms-input-placeholder{color:#000000;opacity:0.5;}#rec588251809 textarea::-webkit-input-placeholder {color:#000000;opacity:0.5;}#rec588251809 textarea::-moz-placeholder{color:#000000;opacity:0.5;}#rec588251809 textarea:-moz-placeholder {color:#000000;opacity:0.5;}#rec588251809 textarea:-ms-input-placeholder{color:#000000;opacity:0.5;}
+</style>
 </div>
 </div>
 </div>
